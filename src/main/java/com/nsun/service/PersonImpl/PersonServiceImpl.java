@@ -24,4 +24,12 @@ public class PersonServiceImpl implements PersonService{
     public List<Person> findAll() {
         return personDao.findAll();
     }
+
+    public void save(Person person){
+        personDao.save(person);
+    }
+
+    public void delete(Integer id) {
+        personDao.delete(id);
+    }
 }

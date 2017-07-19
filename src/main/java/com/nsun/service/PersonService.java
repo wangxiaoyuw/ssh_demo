@@ -13,7 +13,11 @@ import java.util.List;
 
 public interface PersonService {
 
-    public Person findOneById(int i);
+    Person findOneById(int i);
 
     List<Person> findAll();
+
+    void save(Person person);
+
+    void delete(Integer id);
 }
