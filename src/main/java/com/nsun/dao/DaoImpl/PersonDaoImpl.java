@@ -18,10 +18,16 @@ public class PersonDaoImpl implements PersonDao{
     @Autowired
     private SessionFactory sessionFactory;
 
+    //获取session
     private Session getCurrentSession() {
-        return this.sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
+    /**
+     * 根据id查找
+     * @param i
+     * @return
+     */
     public Person findOneById(int i) {
         return (Person) getCurrentSession().get(Person.class,i);
     }
@@ -47,23 +53,25 @@ public class PersonDaoImpl implements PersonDao{
         getCurrentSession().persist(entity);
     }
 
-    public Integer save(Person person){
-
-        return (Integer) getCurrentSession().merge(person);
+    /**
+     * 保存
+     * @param person
+     */
+    public void save(Person person){
+        getCurrentSession().save(person);
     }
 
     public void saveOrUpdate(Person entity) {
     getCurrentSession().merge(entity);
     }
 
-    public void delete(Integer id) {
-         Person person = load(id);
+    /**
+     * 删除
+     * @param person
+     */
+    public void delete(Person person) {
          getCurrentSession().delete(person);
+         getCurrentSession().flush();
     }
-
-    public void flush() {
-        getCurrentSession().flush();
-    }
-
 
 }

@@ -6,12 +6,14 @@ import com.nsun.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by wangzy on 2017/7/18.
  */
 @Service
+@Transactional
 public class PersonServiceImpl implements PersonService{
 
     @Autowired
@@ -29,7 +31,7 @@ public class PersonServiceImpl implements PersonService{
         personDao.save(person);
     }
 
-    public void delete(Integer id) {
-        personDao.delete(id);
+    public void delete(Person person) {
+        personDao.delete(person);
     }
 }

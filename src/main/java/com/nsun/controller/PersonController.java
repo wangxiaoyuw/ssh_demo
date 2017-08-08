@@ -41,8 +41,8 @@ public class PersonController {
 
     @RequestMapping("/delete/{id}")
     public String detele(@PathVariable("id")Integer id){
-       // Person person = personService.findOneById(id);
-           personService.delete(id);
+        Person person = personService.findOneById(id);
+           personService.delete(person);
            return "success";
     }
 }
